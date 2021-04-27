@@ -11,10 +11,9 @@ class App extends Component {
     this.state = {
       input: "0",
     };
-
   }
 
-  add = (value) => {
+  handler = (value) => {
     switch (value) {
       case '=': {
         try {
@@ -32,9 +31,7 @@ class App extends Component {
         lastChar = lastChar.slice(-1);
 
         if (/[0]/.test(lastChar) && !/[-+÷×]/.test(value)) {
-          console.log(`last 0 and input not 0`);
           this.setState({ input: this.state.input.slice(0, -1) + value });
-          console.log(this.state.input);
           break;
         }
         if ((/[-+÷×]/.test(lastChar) && /[-+÷×]/.test(value))) {
@@ -59,33 +56,33 @@ class App extends Component {
           </div>
           <div className="bg-digits">
             <div className="row">
-              <Button handlerClick={this.add} value="C" />
-              <Button handlerClick={this.add} value="+/-" />
-              <Button handlerClick={this.add} value="%" />
-              <Button handlerClick={this.add} value="&divide;" />
+              <Button handlerClick={this.handler} value="C" />
+              <Button handlerClick={this.handler} value="+/-" />
+              <Button handlerClick={this.handler} value="%" />
+              <Button handlerClick={this.handler} value="&divide;" />
             </div>
             <div className="row">
-              <Button handlerClick={this.add} value="7" />
-              <Button handlerClick={this.add} value="8" />
-              <Button handlerClick={this.add} value="9" />
-              <Button handlerClick={this.add} value="&times;" />
+              <Button handlerClick={this.handler} value="7" />
+              <Button handlerClick={this.handler} value="8" />
+              <Button handlerClick={this.handler} value="9" />
+              <Button handlerClick={this.handler} value="&times;" />
             </div>
             <div className="row">
-              <Button handlerClick={this.add} value="4" />
-              <Button handlerClick={this.add} value="5" />
-              <Button handlerClick={this.add} value="6" />
-              <Button handlerClick={this.add} value="-" />
+              <Button handlerClick={this.handler} value="4" />
+              <Button handlerClick={this.handler} value="5" />
+              <Button handlerClick={this.handler} value="6" />
+              <Button handlerClick={this.handler} value="-" />
             </div>
             <div className="row">
-              <Button handlerClick={this.add} value="1" />
-              <Button handlerClick={this.add} value="2" />
-              <Button handlerClick={this.add} value="3" />
-              <Button handlerClick={this.add} value="+" />
+              <Button handlerClick={this.handler} value="1" />
+              <Button handlerClick={this.handler} value="2" />
+              <Button handlerClick={this.handler} value="3" />
+              <Button handlerClick={this.handler} value="+" />
             </div>
             <div className="row">
-              <Button handlerClick={this.add} value="0" />
-              <Button handlerClick={this.add} value="." />
-              <Button handlerClick={this.add} value="=" />
+              <Button handlerClick={this.handler} value="0" />
+              <Button handlerClick={this.handler} value="." />
+              <Button handlerClick={this.handler} value="=" />
             </div>
           </div>
         </div>
