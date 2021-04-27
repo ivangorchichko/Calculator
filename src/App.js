@@ -14,7 +14,36 @@ class App extends Component {
   }
 
   handler = (value) => {
+
+    let expr = String(this.state.input);
+    if (expr.search(/[Error|NaN|Infinity]/g) !== -1) {
+      this.state.input = "0";
+    }
+
     switch (value) {
+      case 'C': {
+        this.setState({ input: "0" });
+        break;
+      }
+      case '+/-': {
+        if (/[-+÷×]/.test(this.state.input.slice(-1))) {
+          break;
+        } else {
+          this.setState({ input: this.state.input + `×(-1)` })
+        }
+        break;
+      }
+      case '0': {
+        if (this.state.input === "0") {
+          break;
+        }
+        if ((this.state.input.slice(-1) === "0" && /[-+÷×\s]/.test(this.state.input[this.state.input.length - 2])) || this.state.input.slice(-1) === ")") {
+          break;
+        } else {
+          this.setState({ input: this.state.input + value });
+        }
+        break;
+      }
       case '=': {
         try {
           let answer = String(eval(this.state.input.replaceAll("÷", "/").replaceAll("×", "*")));
