@@ -1,0 +1,47 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+    font-size: 30px;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0);
+    outline-style: solid;
+    outline-color: rgba(251, 255, 255, 0.1);
+    outline-width: 1px;
+}
+
+
+.text-with-opacity {
+    opacity: 0.5;   
+}
+
+.bg-zero {
+    background: rgba(227, 61, 61, 1);
+}
+
+.width-normal {
+    width: 25%;
+}
+
+.width-extra {
+    width: 50%;
+}
+
+@media screen and (max-width: 400px) {
+    .btn {
+        display: flex;
+        justify-content: center;
+        height: 90px;
+        align-items: center;
+        font-size: 28px;
+        color: white;
+        background: rgba(0, 0, 0, 0);
+        outline-style: solid;
+        outline-color: rgba(251, 255, 255, 0.1);
+        outline-width: 1px;
+    }
+    .bg-zero {
+        background: rgba(227, 61, 61, 1);
+    }
+}
