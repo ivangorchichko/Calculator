@@ -75,18 +75,21 @@ class App extends Component {
         let expr = this.state.input;
         let number = "";
         for (let i = expr.length - 1; i >= 0; i--) {
-          let flag = /[-+÷×\s]/.test(expr[i])
-          if (flag) {
+          if (/[-+÷×\s]/.test(expr[i])) {
             break;
           } else {
             number += expr[i];
             expr = expr.slice(0, -1);
           }
         }
-        if(/[.]/.test(number) && /[.]/.test(value)){
-          
-        }else{
-          this.setState({ input: this.state.input + value });
+        if (/[.)]/.test(number) && /[.]/.test(value)) {
+          break;
+        } else {
+          if (/[-+÷×]/.test(this.state.input.slice(-1))) {
+            this.setState({ input: this.state.input + "0" + value });
+          } else {
+            this.setState({ input: this.state.input + value });
+          }
         }
         break;
       }
