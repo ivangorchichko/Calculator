@@ -25,6 +25,52 @@ class App extends Component {
         this.setState({ input: "0" });
         break;
       }
+      case '%': {
+        let expr = String(this.state.input);
+        let percentage = "";
+
+        for (let i = expr.length - 1; i >= 0; i--) {
+          let flag = /[-+÷×\s]/.test(expr[i])
+          if (flag) {
+            break;
+          } else {
+            percentage += expr[i];
+            expr = expr.slice(0, -1);
+          }
+        }
+        percentage = percentage.split("").reverse().join("");
+        try {
+
+          if (expr === '') {
+            this.state.input = this.state.input + `/100`;
+            this.setState({ input: eval(this.state.input) });
+          } else {
+            let lastOperation = expr.slice(-1);
+            expr = expr.slice(0, -1);
+            let percentageAnswer;
+            switch (lastOperation) {
+              case '÷':
+              case '×': {
+                percentageAnswer = percentage / 100;
+                break;
+              }
+              case '+':
+              case '-': {
+                let finalExpr = `${expr.replaceAll("÷", "/").replaceAll("×", "*")}/100*${percentage}`;
+                percentageAnswer = String(eval(finalExpr));
+                break;
+              }
+              default: {
+                break;
+              }
+            }
+            this.setState({ input: expr + lastOperation + percentageAnswer });
+          }
+        } catch (ex) {
+          this.setState({ input: ex.name });
+        }
+        break;
+      }
       case '+/-': {
         if (/[-+÷×]/.test(this.state.input.slice(-1))) {
           break;
